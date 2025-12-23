@@ -28,3 +28,83 @@ export const PlansResponse = Type.Object({
   status: Type.Number(),
   payload: Type.Array(PlanSchema),
 });
+
+// KYC Document schemas
+export const CountrySchema = Type.Object({
+  name: Type.String(),
+  code: Type.String(),
+  flagResId: Type.String(),
+});
+
+export const PrioritySchema = Type.Object({
+  proofOfAddress: Type.Number(),
+});
+
+export const ValidationSchema = Type.Object({
+  required: Type.Boolean(),
+  minLength: Type.Optional(Type.Number()),
+  maxLength: Type.Optional(Type.Number()),
+  errorMessage: Type.Optional(Type.String()),
+});
+
+export const FieldSchema = Type.Object({
+  id: Type.String(),
+  label: Type.String(),
+  type: Type.String(),
+  placeholder: Type.Optional(Type.String()),
+  dropdownOptions: Type.Optional(Type.Array(Type.String())),
+  validation: ValidationSchema,
+  helpText: Type.Optional(Type.String()),
+});
+
+export const PhotoRequirementSchema = Type.Object({
+  id: Type.String(),
+  name: Type.String(),
+  displayName: Type.String(),
+  boundaryShape: Type.String(),
+  cameraType: Type.String(),
+});
+
+export const DocumentTypeSchema = Type.Object({
+  type: Type.String(),
+  category: Type.String(),
+  availableInCountries: Type.Array(CountrySchema),
+  priorities: Type.Array(PrioritySchema),
+  fields: Type.Array(FieldSchema),
+  photoRequirements: Type.Array(PhotoRequirementSchema),
+  requiresSelfie: Type.Boolean(),
+});
+
+export const KYCDocumentTypesResponse = Type.Object({
+  success: Type.Boolean(),
+  status: Type.Number(),
+  payload: Type.Array(DocumentTypeSchema),
+});
+
+// Yearly Income schemas
+export const YearlyIncomeOptionSchema = Type.Object({
+  id: Type.Number(),
+  code: Type.String(),
+  display_label: Type.String(),
+});
+
+export const YearlyIncomeResponse = Type.Object({
+  success: Type.Boolean(),
+  status: Type.Number(),
+  payload: Type.Array(YearlyIncomeOptionSchema),
+  message: Type.String(),
+});
+
+// Income Sources schemas
+export const IncomeSourceOptionSchema = Type.Object({
+  id: Type.Number(),
+  code: Type.String(),
+  display_label: Type.String(),
+});
+
+export const IncomeSourcesResponse = Type.Object({
+  success: Type.Boolean(),
+  status: Type.Number(),
+  payload: Type.Array(IncomeSourceOptionSchema),
+  message: Type.String(),
+});

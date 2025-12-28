@@ -5,6 +5,7 @@ export const HealthResponse = Type.Object({
   success: Type.Boolean(),
   status: Type.String(),
   timestamp: Type.String({ format: "date-time" }),
+  payload: Type.Any(),
 });
 
 // Plans schemas
